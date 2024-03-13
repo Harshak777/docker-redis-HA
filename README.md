@@ -94,5 +94,17 @@ sentinel down-after-milliseconds mymaster 5000
 sentinel failover-timeout mymaster 60000
 sentinel parallel-syncs mymaster 1
 sentinel auth-pass mymaster a-very-complex-password-here
+sentinel resolve-hostnames yes
 #*********************************************************
+```
+### Starting redis in sentinel mode
+```
+#sentinel-0
+docker run -d --rm --name sentinel-0 --net redis -v ${PWD}/sentinel-0:/etc/redis/ redis:7.2-alpine redis-sentinel /etc/redis/sentinel.conf
+
+#sentinel-1
+docker run -d --rm --name sentinel-1 --net redis -v ${PWD}/sentinel-1:/etc/redis/ redis:7.2-alpine redis-sentinel /etc/redis/sentinel.conf
+
+#sentinel-2
+docker run -d --rm --name sentinel-2 --net redis -v ${PWD}/sentinel-2:/etc/redis/ redis:7.2-alpine redis-sentinel /etc/redis/sentinel.conf
 ```
