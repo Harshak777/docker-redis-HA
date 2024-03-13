@@ -70,3 +70,29 @@ docker build . -t kharshak777/redis-client:v1.0.0
 ```
 docker run -it --net redis -e REDIS_HOST=redis-0 -e REDIS_PORT=6379 -e REDIS_PASSWORD="a-very-complex-password-here" -p 80:80 kharshak777/redis-client:v1.0.0
 ```
+### Test Replication
+
+Technically written data should now be on the replicas
+
+```
+# go to one of the clients
+docker exec -it redis-2 sh
+redis-cli
+auth "a-very-complex-password-here"
+keys *
+```
+
+### Configuring sentinel for High Availability
+
+Documentation [here](https://redis.io/topics/sentinel)
+
+```
+#********BASIC CONFIG************************************
+port 5000
+sentinel monitor mymaster redis-0 6379 2
+sentinel down-after-milliseconds mymaster 5000
+sentinel failover-timeout mymaster 60000
+sentinel parallel-syncs mymaster 1
+sentinel auth-pass mymaster a-very-complex-password-here
+#*********************************************************
+```
