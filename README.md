@@ -9,7 +9,7 @@ protected-mode no
 port 6379
 
 #authentication
-masterauth "a-very-complex-password-here"
+masterauth a-very-complex-password-here
 requirepass a-very-complex-password-here
 ```
 ### redis-1 Configuration
@@ -33,6 +33,19 @@ replicaof redis-0 6379
 #authentication
 masterauth "a-very-complex-password-here"
 requirepass a-very-complex-password-here
+```
+
+### Redis common configuration for all servers
+```
+comment out(This stops outside containers to reach redis)
+bind 127.0.0.1 -::1
+
+#persistence
+dir /data
+dbfilename dump.rdb
+
+appendonly yes
+appendfilename "appendonly.aof"
 ```
 
 ### Docker deployment
