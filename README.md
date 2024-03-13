@@ -17,7 +17,7 @@ requirepass a-very-complex-password-here
 ```
 protected-mode no
 port 6379
-replicaof 127.0.0.1 6379
+replicaof redis-0 6379
 
 #authentication
 masterauth "a-very-complex-password-here"
@@ -28,7 +28,7 @@ requirepass a-very-complex-password-here
 ```
 protected-mode no
 port 6379
-replicaof 127.0.0.1 6379
+replicaof redis-0 6379
 
 #authentication
 masterauth "a-very-complex-password-here"
