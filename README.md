@@ -108,3 +108,13 @@ docker run -d --rm --name sentinel-1 --net redis -v ${PWD}/sentinel-1:/etc/redis
 #sentinel-2
 docker run -d --rm --name sentinel-2 --net redis -v ${PWD}/sentinel-2:/etc/redis/ redis:7.2-alpine redis-sentinel /etc/redis/sentinel.conf
 ```
+### Interact with the sentinel
+```
+# Get docker logs and verify if sentinel is monitoring correctly
+docker logs sentinel-0
+
+docker exec -it sentinel-0 sh
+redis-cli -p 5000
+info
+sentinel master mymaster
+```
