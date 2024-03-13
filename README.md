@@ -55,3 +55,14 @@ docker run -d --rm --name redis-2 `
     --net redis `
     -v ${PWD}/redis-2:/etc/redis/ `
     redis:7.2-alpine redis-server /etc/redis/redis.conf
+```
+
+### Dockerize and publish the client
+```
+docker build . -t kharshak777/redis-client:v1.0.0
+```
+
+### Interact with the redis server from the client
+```
+docker run -it --net redis -e REDIS_HOST=redis-0 -e REDIS_PORT=6379 -e REDIS_PASSWORD="a-very-complex-password-here" -p 80:80 kharshak777/redis-client:v1.0.0
+```
