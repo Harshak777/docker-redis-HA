@@ -11,6 +11,8 @@ port 6379
 #authentication
 masterauth a-very-complex-password-here
 requirepass a-very-complex-password-here
+
+replica-announce-ip redis-0
 ```
 ### redis-1 Configuration
 
@@ -22,6 +24,8 @@ replicaof redis-0 6379
 #authentication
 masterauth "a-very-complex-password-here"
 requirepass a-very-complex-password-here
+
+replica-announce-ip redis-1
 ```
 ### redis-2 Configuration
 
@@ -33,6 +37,8 @@ replicaof redis-0 6379
 #authentication
 masterauth "a-very-complex-password-here"
 requirepass a-very-complex-password-here
+
+replica-announce-ip redis-2
 ```
 
 ### Redis common configuration for all servers
@@ -46,6 +52,8 @@ dbfilename dump.rdb
 
 appendonly yes
 appendfilename "appendonly.aof"
+
+replica-announced yes
 ```
 
 ### Docker deployment
@@ -96,6 +104,7 @@ sentinel parallel-syncs mymaster 1
 sentinel auth-pass mymaster a-very-complex-password-here
 sentinel resolve-hostnames yes
 sentinel announce-hostnames yes
+sentinel announce-ip <sentinel-node-ip or entinel-node-name>
 #*********************************************************
 ```
 ### Starting redis in sentinel mode
