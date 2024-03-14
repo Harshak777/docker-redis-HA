@@ -95,6 +95,7 @@ sentinel failover-timeout mymaster 60000
 sentinel parallel-syncs mymaster 1
 sentinel auth-pass mymaster a-very-complex-password-here
 sentinel resolve-hostnames yes
+sentinel announce-hostnames yes
 #*********************************************************
 ```
 ### Starting redis in sentinel mode
