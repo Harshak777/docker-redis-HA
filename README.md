@@ -92,7 +92,7 @@ keys *
 
 ### Configuring sentinel for High Availability
 
-Documentation [here](https://redis.io/topics/sentinel)
+Documentation [here](https://redis.io/docs/management/sentinel/)
 
 ```
 #********BASIC CONFIG************************************
