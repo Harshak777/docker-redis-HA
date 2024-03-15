@@ -128,3 +128,8 @@ redis-cli -p 5000
 info
 sentinel master mymaster
 ```
+### clean up 
+```
+docker rm -f redis-0 redis-1 redis-2
+docker rm -f sentinel-0 sentinel-1 sentinel-2
+```
